@@ -352,4 +352,44 @@ function TransaksiContent() {
               </div>
 
               <div>
-                <label className="text-xs font-bold text-dark
+                <label className="text-xs font-bold text-dark-brown/70">Tanggal</label>
+                <input
+                  type="date"
+                  required
+                  value={form.date}
+                  onChange={(e) => setForm({ ...form, date: e.target.value })}
+                  className="w-full mt-1 rounded-2xl bg-cream border border-soft-gray px-3.5 py-2 text-sm text-dark-brown"
+                />
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setModalOpen(false)}
+                  className="px-4 py-2 rounded-full text-xs font-bold text-dark-brown bg-cream border border-soft-gray"
+                >
+                  Batal
+                </button>
+                <button
+                  type="submit"
+                  disabled={saving}
+                  className="px-5 py-2 rounded-full text-xs font-bold text-white bg-dark-brown hover:opacity-90 disabled:opacity-50"
+                >
+                  {saving ? "Menyimpan..." : "Simpan"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function TransaksiPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center font-bold">Memuat transaksi...</div>}>
+      <TransaksiContent />
+    </Suspense>
+  );
+}
